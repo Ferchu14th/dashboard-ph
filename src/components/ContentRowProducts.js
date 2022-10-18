@@ -2,7 +2,7 @@ import React from "react";
 import SmallCard from "./SmallCard";
 import SmallCardCategorias from "./SmallCardCategorias";
 
-function ContentRowGeneral() {
+function ContentRowProducts() {
     return (
         <React.Fragment>
             <div className="row">
@@ -15,4 +15,4 @@ function ContentRowGeneral() {
         </React.Fragment>
     );
 }
-export default ContentRowGeneral;
+export default ContentRowProducts;

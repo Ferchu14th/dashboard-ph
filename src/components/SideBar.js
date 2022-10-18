@@ -3,7 +3,7 @@ import image from "../assets/images/LogoPaddleHouse.jpg";
 import ContentWrapper from "./ContentWrapper";
 import LastMovieInDb from "./LastMovieInDb";
 import SearchProducts from "./SearchProducts";
-
+import Chart from './Chart';
 import NotFound from "./NotFound";
 import { Link, Route, Switch } from "react-router-dom";
 
@@ -50,7 +50,11 @@ function SideBar() {
             <span>Buscar Productos</span>
           </Link>
         </li>
-       
+        <li className="nav-item nav-link">
+                <Link className="nav-link" to="/chart">
+                        <i className="fas fa-fw fa-table"></i>
+                        <span>Tabla</span></Link>
+                </li>
         {/*<!-- Divider -->*/}
         <hr className="sidebar-divider d-none d-md-block" />
       </ul>
@@ -62,7 +66,9 @@ function SideBar() {
         <Route path="/LastMovieInDb">
           <LastMovieInDb />
         </Route>
-        
+        <Route path="/Chart">
+                    <Chart />
+                </Route>
         <Route path="/search" component={SearchProducts} />
         <Route component={NotFound} />
       </Switch>

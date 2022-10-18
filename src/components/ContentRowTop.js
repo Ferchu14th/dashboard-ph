@@ -1,7 +1,7 @@
 import React from 'react';
 import ContentRowCenter from './ContentRowCenter';
 import ContentRowProducts from './ContentRowProducts';
-
+import Chart from './Chart';
 
 function ContentRowTop() {
 	return (
@@ -13,6 +13,7 @@ function ContentRowTop() {
 				</div>
 				<ContentRowProducts />
 				<ContentRowCenter />
+				<Chart />
 			</div>
 			{/*<!--End Content Row Top-->*/}
 		</React.Fragment>
