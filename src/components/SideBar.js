@@ -50,6 +50,12 @@ function SideBar() {
             <span>Buscar Productos</span>
           </Link>
         </li>
+        <li className="nav-item">
+                    <Link className="nav-link" to="/LastMovieInDb">
+                        <i className="fas fa-fw fa-chart-area"></i>
+                        <span>Ultimo Producto</span></Link>
+                </li>
+
         <li className="nav-item nav-link">
                 <Link className="nav-link" to="/chart">
                         <i className="fas fa-fw fa-table"></i>

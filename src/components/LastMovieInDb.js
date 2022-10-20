@@ -1,42 +1,53 @@
-import React from "react";
-import imagenFondo from "../assets/images/6328118.jpg";
+import React, { Component } from "react";
 
-function LastProductInDb() {
-    return (
-        <div className="col-lg-6 mb-4">
-            <div className="card shadow mb-4">
-                <div className="card-header py-3">
-                    <h5 className="m-0 font-weight-bold text-gray-800">
-                        Paddle House Products
-                    </h5>
-                </div>
-                <div className="card-body">
-                    <div className="text-center">
-                        <img
-                            className="img-fluid px-3 px-sm-4 mt-3 mb-4"
-                            style={{ width: 40 + "rem" }}
-                            src={imagenFondo}
-                            alt=" Paddle House - Deportes "
-                        />
-                    </div>
-                    <p>
-                        El pádel (Paddle en Inglés) es un deporte de raqueta que se adapta a
-                        todas las edades. Se juega siempre en pareja y consta de tres
-                        elementos fundamentales para su desarrollo: la pelota, la paleta o
-                        raqueta y el campo de juego o cancha. Desde **PaddleHouse** te
-                        traemos al país las paletas y accesorios de marcas ya establecidas
-                        en el mercado que mejor se adaptan a las necesidades de los que aman
-                        este deporte, junto con otros accesorios que forman parte de los
-                        elementos necesarios para disfrutar a pleno y de manera segura de
-                        este deporte.
-                    </p>
-                    <a className="btn btn-danger" target="_blank" rel="nofollow" href="/">
-                        View products details
-                    </a>
-                </div>
-            </div>
-        </div>
-    );
-}
+class LastMovie extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { 
+            lastProduct: []
+        }
+    }
 
-export default LastProductInDb;
+    apiCall(url, consecuencia) {
+        fetch(url)
+            .then(response => response.json())
+            .then(data => consecuencia(data))
+            .catch(e => console.log(e))
+    }
+
+    componentDidMount() {
+        this.apiCall("http://localhost:3000/api/products/lastProduct", this.lastProduct);
+    }
+
+    lastProduct = (data) => {
+        this.setState({
+            name: data.data[0].name,
+            description: data.data[0].description,
+            image: data.data[0].image,
+            price: data.data[0].price,
+        })
+    }
+
+    render() {
+        let url = "/images/uploads/" + this.state.image
+        return (
+          <div className="col-lg-6 mb-4">
+              <div className="card shadow mb-4">
+                  <div className="card-header py-3">
+                      <h5 className="m-0 font-weight-bold text-gray-800">Ultimo Producto Listado - {this.state.name} </h5>
+                  </div>
+                  <div className="card-body">
+                      <div className="text-center">
+                          <img className="img-fluid px-3 px-sm-4 mt-3 mb-4" style={{width: 15 +'rem'}} src={url} alt=" Ultimo producto "/>
+                      </div>
+                      <p>{this.state.description}</p>
+                      <p>{this.state.price}</p>
+                      <a className="btn btn-danger" target="_blank" rel="nofollow" href="http://localhost:3050/products">View on the website</a>
+                  </div>
+              </div>
+          </div>
+        );
+    }
+};
+
+export default LastMovie;
